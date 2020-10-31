@@ -2,7 +2,19 @@
 #include<fstream>
 #include<string>
 using namespace std;
-
+enum class tokentype{ VERB.VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2 EOFM };
+// ** For the display names of tokens - must be in the same order as the tokentype.
+string connectors[] = { "mata", "soshite","shikashi","dakara" };
+string pronoun[] = { "watashi","anata", "kare", "kanojo", "sore" };
+string verb = "masu";
+string verbneg = "masen";
+string verbpast = "ashita";
+string verbpastneg = "masendeshita";
+string is = "desu";
+string was = "deshita";
+string object = "o";
+string subject = "wa";
+string destination = "ni";
 /* Look for all **'s and complete them */
 
 //=====================================================
