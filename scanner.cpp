@@ -12,33 +12,114 @@ using namespace std;
 // --------- Two DFAs ---------------------------------
 
 // WORD DFA 
-// Done by: **
+// Done by: Julian Jaramillo
 // RE:   **
 bool word (string s)
 {
 
   int state = 0;
   int charpos = 0;
-  /* replace the following todo the word dfa  **
+  // replace the following todo the word dfa  **
   while (s[charpos] != '\0') 
     {
-      if (state == 0 && s[charpos] == 'a')
+      if (state == 0 && s[charpos] == 'c')
       state = 1;
       else
-      if (state == 1 && s[charpos] == 'b')
+      if (state == 0 && s[charpos] == 't')
       state = 2;
       else
-      if (state == 2 && s[charpos] == 'b')
-      state = 2;
+      if (state == 0 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+          s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+      state = 3;
       else
-	  return(false);
-      charpos++;
+      if (state == 0 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
+          s[charpos] == 'y' || s[charpos] == 'j'))
+      state = 4;
+      else 
+      if (state == 0 && s[charpos] == 's')
+        state = 5;
+      else
+      if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+      state = 7;
+      else
+      if (state == 1 && s[charpos] == 's')
+        state = 4;
+      else 
+      if (state == 2 && s[charpos] == 's')
+        state = 4;
+      else 
+      if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+      else
+      if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+      else
+      if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+      else
+      if (state == 5 && s[charpos] == 'h')
+        state = 4;
+      else 
+      if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+      else
+      if (state == 6 && s[charpos] == 'c')
+        state = 1;
+      else
+      if (state == 6 && s[charpos] == 't')
+        state = 2;
+      else
+      if (state == 6 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+          s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r') )
+        state = 3;
+      else 
+      if (state == 6 && s[charpos] == 'y')
+        state = 4;
+      else
+      if (state == 6 && s[charpos] == 's')
+        state = 5;
+      else
+      if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+      else 
+      if (state == 7 && s[charpos] == 'c')
+        state = 1;
+      else
+      if (state == 7 && s[charpos] == 't')
+        state = 2;
+      else
+      if (state == 7 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+          s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+        state = 3;
+      else
+      if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
+          s[charpos] == 'y' || s[charpos] == 'j'))
+        state = 4;
+      else
+      if (state == 7 && s[charpos] == 's')
+        state = 5;
+      else
+      if (state == 7 && s[charpos] == 'n')
+        state = 6;
+      else
+      if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+          s[charpos] == 'e' || s[charpos] == 'o'))
+        state = 7;
+     else
+	    return(false);
+     charpos++;
     }//end of while
 
   // where did I end up????
-  if (state == 2) return(true);  // end in a final state
+  if (state == 7) return(true);  // end in a final state
    else return(false);
-  */
+  
 }
 
 // PERIOD DFA 
