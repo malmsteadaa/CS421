@@ -16,6 +16,7 @@ string object = "o";
 string subject = "wa";
 string destination = "ni";
 /* Look for all **'s and complete them */
+//echoooooo
 
 //=====================================================
 // File scanner.cpp written by: Group Number: **
