@@ -2,7 +2,7 @@
 #include<fstream>
 #include<string>
 using namespace std;
-enum class tokentype{ VERB.VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2 EOFM };
+enum class tokentype{ VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2 EOFM };
 // ** For the display names of tokens - must be in the same order as the tokentype.
 string connectors[] = { "mata", "soshite","shikashi","dakara" };
 string pronoun[] = { "watashi","anata", "kare", "kanojo", "sore" };
@@ -18,12 +18,12 @@ string destination = "ni";
 /* Look for all **'s and complete them */
 
 //=====================================================
-// File scanner.cpp written by: Group Number: ** 
+// File scanner.cpp written by: Group Number: **
 //=====================================================
 
 // --------- Two DFAs ---------------------------------
 
-// WORD DFA 
+// WORD DFA
 // Done by: Julian Jaramillo
 // RE:   **
 bool word (string s)
@@ -32,7 +32,7 @@ bool word (string s)
   int state = 0;
   int charpos = 0;
   // replace the following todo the word dfa  **
-  while (s[charpos] != '\0') 
+  while (s[charpos] != '\0')
     {
       if (state == 0 && s[charpos] == 'c')
       state = 1;
@@ -47,7 +47,7 @@ bool word (string s)
       if (state == 0 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
           s[charpos] == 'y' || s[charpos] == 'j'))
       state = 4;
-      else 
+      else
       if (state == 0 && s[charpos] == 's')
         state = 5;
       else
@@ -57,10 +57,10 @@ bool word (string s)
       else
       if (state == 1 && s[charpos] == 's')
         state = 4;
-      else 
+      else
       if (state == 2 && s[charpos] == 's')
         state = 4;
-      else 
+      else
       if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
           s[charpos] == 'e' || s[charpos] == 'o'))
         state = 7;
@@ -75,7 +75,7 @@ bool word (string s)
       else
       if (state == 5 && s[charpos] == 'h')
         state = 4;
-      else 
+      else
       if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
           s[charpos] == 'e' || s[charpos] == 'o'))
         state = 7;
@@ -89,7 +89,7 @@ bool word (string s)
       if (state == 6 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
           s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r') )
         state = 3;
-      else 
+      else
       if (state == 6 && s[charpos] == 'y')
         state = 4;
       else
@@ -99,7 +99,7 @@ bool word (string s)
       if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
           s[charpos] == 'e' || s[charpos] == 'o'))
         state = 7;
-      else 
+      else
       if (state == 7 && s[charpos] == 'c')
         state = 1;
       else
@@ -131,10 +131,10 @@ bool word (string s)
   // where did I end up????
   if (state == 7) return(true);  // end in a final state
    else return(false);
-  
+
 }
 
-// PERIOD DFA 
+// PERIOD DFA
 // Done by: **
 bool period (string s)
 {  // complete this **
@@ -148,28 +148,28 @@ bool period (string s)
 enum tokentype {ERROR, };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[30] = { }; 
+string tokenName[30] = { };
 
-// ** Need the reservedwords table to be set up here. 
+// ** Need the reservedwords table to be set up here.
 // ** Do not require any file input for this. Hard code the table.
 // ** a.out should work without any additional files.
 
 
-// ------------ Scanner and Driver ----------------------- 
+// ------------ Scanner and Driver -----------------------
 
 ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by: 
+// ** Done by:
 int scanner(tokentype& tt, string& w)
 {
 
   // ** Grab the next word from the file via fin
-  // 1. If it is eofm, return right now.   
+  // 1. If it is eofm, return right now.
 
   /*  **
-  2. Call the token functions (word and period) 
+  2. Call the token functions (word and period)
      one after another (if-then-else).
      Generate a lexical error message if both DFAs failed.
      Let the tokentype be ERROR in that case.
@@ -186,14 +186,14 @@ int scanner(tokentype& tt, string& w)
 
 
 
-// The temporary test driver to just call the scanner repeatedly  
+// The temporary test driver to just call the scanner repeatedly
 // This will go away after this assignment
-// DO NOT CHANGE THIS!!!!!! 
+// DO NOT CHANGE THIS!!!!!!
 // Done by:  Louis
 int main()
 {
   tokentype thetype;
-  string theword; 
+  string theword;
   string filename;
 
   cout << "Enter the input file name: ";
@@ -205,15 +205,14 @@ int main()
    while (true)
     {
        scanner(thetype, theword);  // call the scanner which sets
-                                   // the arguments  
+                                   // the arguments
        if (theword == "eofm") break;  // stop now
 
        cout << "Type is:" << tokenName[thetype] << endl;
-       cout << "Word is:" << theword << endl;   
+       cout << "Word is:" << theword << endl;
     }
 
    cout << "End of file is encountered." << endl;
    fin.close();
 
 }// end
-
