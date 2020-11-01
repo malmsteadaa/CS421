@@ -162,18 +162,43 @@ ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by:
+// ** Done by: Rodolfo Rodriguez
 int scanner(tokentype& tt, string& w)
 {
 
   // ** Grab the next word from the file via fin
   // 1. If it is eofm, return right now.
+  string current ;
+  fin >> current;
 
+  if(current == ' '){
+    fin >> current
+  }
+  if(current == "eofm"){
+    //need to add token type after table is setup. tt = eofm
+    w=current;//passing value of "eofm" back and breaking out of loop.
+    return 0;
+  }
   /*  **
+
+
   2. Call the token functions (word and period)
      one after another (if-then-else).
      Generate a lexical error message if both DFAs failed.
      Let the tokentype be ERROR in that case.
+
+***/
+  if (period(current)) {
+
+  }
+  else if(!(word(current))){
+      //condition of a double false
+      tt = "Error" // This is to be updated after token table is created.
+      w = current;// passing by reference.
+      return 0;
+  }
+
+/***
 
   3. If it was a word,
      check against the reservedwords list.
